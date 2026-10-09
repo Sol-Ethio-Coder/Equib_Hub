@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 245 248 247; --surface: 255 255 255; --ink: 11 31 28; --muted: 91 111 107; --line: 220 229 226;
+  --brand: 14 111 100; --brand-ink: 255 255 255; --gold: 201 138 30; --danger: 190 50 50;
+}
+.dark {
+  --bg: 8 17 15; --surface: 15 27 24; --ink: 231 241 238; --muted: 147 169 163; --line: 31 51 46;
+  --brand: 43 179 163; --brand-ink: 6 30 26; --gold: 232 176 74; --danger: 240 120 120;
+}
+html { color-scheme: light; }
+html.dark { color-scheme: dark; }
+body { @apply bg-bg text-ink font-sans antialiased; }
+h1, h2, h3 { @apply font-display tracking-tight; }
+:focus-visible { outline: 2px solid rgb(var(--brand)); outline-offset: 2px; }
+
+@layer components {
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition disabled:opacity-60 disabled:cursor-not-allowed; }
+  .btn-primary { @apply btn bg-brand text-brand-ink hover:opacity-90; }
+  .btn-ghost { @apply btn border border-line bg-surface text-ink hover:bg-bg; }
+  .input { @apply w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-sm placeholder:text-muted/70; }
+  .label { @apply mb-1.5 block text-sm font-medium; }
+  .card { @apply rounded-2xl border border-line bg-surface; }
+}
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.ring-spin { animation: spin-slow 28s linear infinite; transform-origin: center; }
+@media (prefers-reduced-motion: reduce) { .ring-spin { animation: none; } }
